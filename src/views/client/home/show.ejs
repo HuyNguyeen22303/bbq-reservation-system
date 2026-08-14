@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeoulFire | Premium Korean BBQ Buffet</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <%- include('../partials/header') %>
+
+        <!-- End Header -->
+
+        <!-- Hero -->
+        <%- include('../partials/hero') %>
+            <!-- End Hero -->
+
+
+            <!-- Best Choice Showcase -->
+            <section id="best-choice" class="best-choice-section">
+                <h2 class="best-choice-title">Best Choice</h2>
+
+                <div class="features-row">
+                    <div class="feature-item">
+                        <i class="fa-solid fa-bowl-rice"></i>
+                        <p>CHUẨN VỊ NƯỚNG HÀN</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-book-open"></i>
+                        <p>THỰC ĐƠN ĐA DẠNG</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-couch"></i>
+                        <p>KHÔNG GIAN ẤM CÚNG</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-bell-concierge"></i>
+                        <p>PHỤC VỤ TẬN TÌNH</p>
+                    </div>
+                </div>
+
+                <div class="gallery-row">
+                    <img src="images/food-1.jpg" alt="Meat 1">
+                    <img src="images/food-2.jpg?q=80&w=800&auto=format&fit=crop" alt="Seafood">
+                    <img src="images/food-3.jpg?q=80&w=800&auto=format&fit=crop" alt="Meat 2">
+
+                </div>
+            </section>
+
+            <!-- Reservation Form -->
+            <section id="reservation" class="reservation-section">
+                <div class="reservation-container">
+                    <div class="res-text">
+                        <h2>Secure Your <span>Table</span></h2>
+                        <p>Join us for an unforgettable culinary journey. We highly recommend booking in advance to
+                            guarantee
+                            your spot at the grill.</p>
+
+                        <ul class="step-list">
+                            <li class="step-item">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Select Details</h4>
+                                    <p>Choose your preferred date, time, and party size.</p>
+                                </div>
+                            </li>
+                            <li class="step-item">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Provide Information</h4>
+                                    <p>Enter your contact details so we can confirm your booking.</p>
+                                </div>
+                            </li>
+                            <li class="step-item">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Get Ready to Grill</h4>
+                                    <p>Receive your confirmation SMS and prepare your appetite!</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="reservation-form">
+                        <h3>Book a Table</h3>
+                        <form action="/reserve" method="POST">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">Date</label>
+                                    <input type="date" class="form-control" name="date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Time</label>
+                                    <select class="form-control" name="time" required>
+                                        <option value="" disabled selected>Select Time</option>
+                                        <option value="17:00">5:00 PM</option>
+                                        <option value="18:00">6:00 PM</option>
+                                        <option value="19:00">7:00 PM</option>
+                                        <option value="20:00">8:00 PM</option>
+                                        <option value="21:00">9:00 PM</option>
+                                    </select>
+                                </div>
+                                <div class="form-group full">
+                                    <label class="form-label">Party Size</label>
+                                    <select class="form-control" name="guests" required>
+                                        <option value="2">2 People</option>
+                                        <option value="3">3 People</option>
+                                        <option value="4">4 People</option>
+                                        <option value="5">5 People</option>
+                                        <option value="6">6+ People</option>
+                                    </select>
+                                </div>
+                                <div class="form-group full">
+                                    <label class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" name="name" placeholder="John Doe" required>
+                                </div>
+                                <div class="form-group full">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" name="phone" placeholder="(555) 000-0000"
+                                        required>
+                                </div>
+                            </div>
+                            <button type="submit" class="submit-btn">Confirm Reservation</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <%- include('../partials/footer') %>
+                <!-- END Footer -->
+
+
+
+                <!-- External JS -->
+                <script src="/js/main.js"></script>
+</body>
+
+</html>

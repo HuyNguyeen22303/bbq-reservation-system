@@ -1,0 +1,19 @@
+# Ignore all log files in the repository
+*.log
+
+# But do not ignore this specific log file
+!important.log
+
+# Ignore the node_modules folder at any depth
+node_modules/
+
+# Ignore the build directory at the root level only
+/build/
+
+# Ignore local configuration files
+.env
+.env.local
+
+# Ignore OS-generated system files
+.DS_Store
+Thumbs.db
