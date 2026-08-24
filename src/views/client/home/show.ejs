@@ -58,6 +58,8 @@
                     <img src="images/food-1.jpg" alt="Meat 1">
                     <img src="images/food-2.jpg?q=80&w=800&auto=format&fit=crop" alt="Seafood">
                     <img src="images/food-3.jpg?q=80&w=800&auto=format&fit=crop" alt="Meat 2">
+                    <img src="images/food-3.jpg?q=80&w=800&auto=format&fit=crop" alt="Meat 2">
+                    <img src="images/food-4.jpg?q=80&w=800&auto=format&fit=crop" alt="Meat 2">
 
                 </div>
             </section>
@@ -98,8 +100,17 @@
 
                     <div class="reservation-form">
                         <h3>Book a Table</h3>
-                        <form action="/reserve" method="POST">
+                        <form action="/booking" method="POST">
                             <div class="form-grid">
+                                <div class="form-group full">
+                                    <label class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" name="name" placeholder="John Doe" required>
+                                </div>
+                                <div class="form-group full">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" name="phone" placeholder="(555) 000-0000"
+                                        required>
+                                </div>
                                 <div class="form-group">
                                     <label class="form-label">Date</label>
                                     <input type="date" class="form-control" name="date" required>
@@ -108,11 +119,16 @@
                                     <label class="form-label">Time</label>
                                     <select class="form-control" name="time" required>
                                         <option value="" disabled selected>Select Time</option>
-                                        <option value="17:00">5:00 PM</option>
-                                        <option value="18:00">6:00 PM</option>
-                                        <option value="19:00">7:00 PM</option>
-                                        <option value="20:00">8:00 PM</option>
-                                        <option value="21:00">9:00 PM</option>
+                                        <option value="12:00">12:00 (Trưa)</option>
+                                        <option value="13:00">13:00</option>
+                                        <option value="14:00">14:00</option>
+                                        <option value="15:00">15:00</option>
+                                        <option value="16:00">16:00</option>
+                                        <option value="17:00">17:00</option>
+                                        <option value="18:00">18:00</option>
+                                        <option value="19:00">19:00</option>
+                                        <option value="20:00">20:00</option>
+                                        <option value="21:00">21:00</option>
                                     </select>
                                 </div>
                                 <div class="form-group full">
@@ -124,15 +140,6 @@
                                         <option value="5">5 People</option>
                                         <option value="6">6+ People</option>
                                     </select>
-                                </div>
-                                <div class="form-group full">
-                                    <label class="form-label">Full Name</label>
-                                    <input type="text" class="form-control" name="name" placeholder="John Doe" required>
-                                </div>
-                                <div class="form-group full">
-                                    <label class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" name="phone" placeholder="(555) 000-0000"
-                                        required>
                                 </div>
                             </div>
                             <button type="submit" class="submit-btn">Confirm Reservation</button>

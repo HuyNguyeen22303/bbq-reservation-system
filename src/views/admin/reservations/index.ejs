@@ -1,0 +1,104 @@
+<%- include('../partials/header') %>
+<%- include('../partials/sidebar') %>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+        <h6 class="m-0 font-weight-bold text-primary">Danh sách Đặt Bàn</h6>
+    </div>
+    
+    <!-- Bộ lọc trạng thái -->
+    <div class="card-body border-bottom">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link <%= !statusFilter ? 'active' : '' %>" href="/admin/reservations">Tất cả</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <%= statusFilter === 'pending' ? 'active' : '' %> text-warning" href="/admin/reservations?status=pending">Chờ duyệt</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <%= statusFilter === 'confirmed' ? 'active' : '' %> text-success" href="/admin/reservations?status=confirmed">Đã xác nhận</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <%= statusFilter === 'completed' ? 'active' : '' %> text-primary" href="/admin/reservations?status=completed">Hoàn thành</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <%= statusFilter === 'cancelled' ? 'active' : '' %> text-danger" href="/admin/reservations?status=cancelled">Đã huỷ</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Khách Hàng</th>
+                        <th>SĐT</th>
+                        <th>Bàn</th>
+                        <th>Ngày & Giờ</th>
+                        <th>Số Lượng</th>
+                        <th>Ghi chú</th>
+                        <th>Trạng Thái</th>
+                        <th>Hành Động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (reservations && reservations.length > 0) { %>
+                        <% reservations.forEach(res => { %>
+                            <% 
+                                const customerName = res.user ? res.user.name : (res.guestInfo ? res.guestInfo.name : 'Khách vãng lai');
+                                const customerPhone = res.user ? res.user.phone : (res.guestInfo ? res.guestInfo.phone : 'N/A');
+                                
+                                // Format date to DD/MM/YYYY
+                                const dateObj = new Date(res.date);
+                                const dateStr = ("0" + dateObj.getDate()).slice(-2) + "/" + ("0" + (dateObj.getMonth() + 1)).slice(-2) + "/" + dateObj.getFullYear();
+                            %>
+                            <tr>
+                                <td><%= customerName %></td>
+                                <td><%= customerPhone %></td>
+                                <td><strong><%= res.table ? res.table.tableNumber : 'N/A' %></strong></td>
+                                <td>
+                                    <span class="d-block text-primary fw-bold"><%= res.time %></span>
+                                    <span class="small text-muted"><%= dateStr %></span>
+                                </td>
+                                <td><%= res.partySize %> người</td>
+                                <td class="small text-muted"><%= res.specialRequests || 'Không' %></td>
+                                <td>
+                                    <!-- Form thay đổi trạng thái nhanh -->
+                                    <form action="/admin/reservations/status/<%= res._id %>" method="POST" class="d-inline">
+                                        <select name="status" class="form-select form-select-sm" onchange="this.form.submit()"
+                                            style="width: 130px; font-weight: bold;
+                                            <%= res.status === 'pending' ? 'color: #ffc107;' : '' %>
+                                            <%= res.status === 'confirmed' ? 'color: #198754;' : '' %>
+                                            <%= res.status === 'completed' ? 'color: #0d6efd;' : '' %>
+                                            <%= res.status === 'cancelled' ? 'color: #dc3545;' : '' %>
+                                            "
+                                        >
+                                            <option value="pending" <%= res.status === 'pending' ? 'selected' : '' %>>Chờ duyệt</option>
+                                            <option value="confirmed" <%= res.status === 'confirmed' ? 'selected' : '' %>>Xác nhận</option>
+                                            <option value="completed" <%= res.status === 'completed' ? 'selected' : '' %>>Hoàn thành</option>
+                                            <option value="cancelled" <%= res.status === 'cancelled' ? 'selected' : '' %>>Đã huỷ</option>
+                                        </select>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="/admin/reservations/delete/<%= res._id %>" method="POST" class="d-inline" onsubmit="return confirm('Xoá bản ghi này sẽ mất dữ liệu lịch sử. Bạn có chắc chắn muốn xoá?');">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="8" class="text-center text-muted">Không có yêu cầu đặt bàn nào.</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

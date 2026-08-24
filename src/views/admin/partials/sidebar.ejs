@@ -1,0 +1,52 @@
+        <!-- Sidebar -->
+        <nav class="sidebar col-md-3 col-lg-2 d-md-block collapse">
+            <h4 class="text-center mb-4 text-white">BBQ Admin</h4>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link <%= typeof path !== 'undefined' && path === '/admin' ? 'active' : '' %>" href="/admin">
+                        <i class="fa-solid fa-gauge me-2"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= typeof path !== 'undefined' && path === '/admin/reservations' ? 'active' : '' %>" href="/admin/reservations">
+                        <i class="fa-solid fa-book me-2"></i> Đặt bàn
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= typeof path !== 'undefined' && path === '/admin/tables' ? 'active' : '' %>" href="/admin/tables">
+                        <i class="fa-solid fa-chair me-2"></i> Sơ đồ bàn
+                    </a>
+                </li>
+                <% if (typeof adminUser !== 'undefined' && adminUser.role === 'admin') { %>
+                <li class="nav-item">
+                    <a class="nav-link <%= typeof path !== 'undefined' && path.startsWith('/admin/users') ? 'active' : '' %>" href="/admin/users">
+                        <i class="fa-solid fa-users me-2"></i> Quản lý tài khoản
+                    </a>
+                </li>
+                <% } %>
+                <li class="nav-item mt-4">
+                    <a class="nav-link text-danger" href="/admin/logout">
+                        <i class="fa-solid fa-right-from-bracket me-2"></i> Đăng xuất
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- Main Content Area -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 content-wrapper">
+            <!-- Topbar -->
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom navbar-top rounded p-3">
+                <h1 class="h2"><%= typeof title !== 'undefined' ? title : 'Bảng Điều Khiển' %></h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            <i class="fa-solid fa-user me-1"></i> Admin
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Hồ sơ</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="/admin/logout">Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>

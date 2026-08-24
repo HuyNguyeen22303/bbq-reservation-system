@@ -37,7 +37,6 @@ nav {
 }
 
 .logo {
-    font-family: 'Playfair Display', serif;
     font-size: 2rem;
     font-weight: 700;
     color: var(--clean-white);
@@ -75,7 +74,7 @@ nav {
     background-color: var(--fire-red);
     color: var(--clean-white);
     padding: 0.8rem 1.8rem;
-    border-radius: 50px;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: 700;
     text-transform: uppercase;
@@ -112,7 +111,7 @@ nav {
     background: rgba(255, 59, 31, 0.15);
     color: var(--fire-red);
     padding: 0.5rem 1.2rem;
-    border-radius: 50px;
+    border-radius: 8px;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -121,7 +120,6 @@ nav {
 }
 
 .hero h1 {
-    font-family: 'Playfair Display', serif;
     font-size: 5rem;
     color: var(--clean-white);
     line-height: 1.1;
@@ -143,7 +141,7 @@ nav {
     color: var(--clean-white);
     padding: 1.2rem 3rem;
     font-size: 1.1rem;
-    border-radius: 50px;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: 700;
     text-transform: uppercase;
@@ -163,13 +161,12 @@ nav {
 
 /* Best Choice Section */
 .best-choice-section {
-    padding: 6rem 5% 2rem;
+    padding: 6rem 5%;
     background-color: #e0deda;
     text-align: center;
 }
 
 .best-choice-title {
-    font-family: 'Dancing Script', cursive;
     font-size: 5rem;
     color: #b59575;
     font-weight: 600;
@@ -208,6 +205,7 @@ nav {
 .gallery-row {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 15px;
     max-width: 1400px;
     margin: 0 auto;
@@ -264,7 +262,6 @@ nav {
 }
 
 .res-text h2 {
-    font-family: 'Playfair Display', serif;
     font-size: 3.5rem;
     margin-bottom: 1.5rem;
     line-height: 1.2;
@@ -319,7 +316,7 @@ nav {
 .reservation-form {
     background-color: var(--clean-white);
     padding: 3.5rem;
-    border-radius: 24px;
+    border-radius: 8px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     color: var(--charcoal-black);
 }
@@ -357,7 +354,7 @@ nav {
     width: 100%;
     padding: 1rem 1.2rem;
     border: 1px solid #e0e0e0;
-    border-radius: 12px;
+    border-radius: 8px;
     font-family: inherit;
     font-size: 1rem;
     transition: all 0.3s;
@@ -387,7 +384,7 @@ select.form-control {
     padding: 1.2rem;
     font-size: 1.1rem;
     font-weight: 700;
-    border-radius: 12px;
+    border-radius: 8px;
     cursor: pointer;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -405,12 +402,11 @@ select.form-control {
 footer {
     background-color: #0a0a0a;
     color: var(--text-light);
-    padding: 4rem 5% 2rem;
+    padding: 4rem 5%;
     text-align: center;
 }
 
 .footer-logo {
-    font-family: 'Playfair Display', serif;
     font-size: 2rem;
     color: var(--clean-white);
     margin-bottom: 1.5rem;
@@ -458,6 +454,57 @@ footer {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* --- Menu Page Styles --- */
+.menu-page-header {
+    padding: 120px 5%;
+    background-color: var(--darker-charcoal);
+    color: var(--clean-white);
+    text-align: center;
+}
+
+.menu-page-header h1 {
+    font-size: 4rem;
+    color: var(--fire-red);
+    margin-bottom: 1rem;
+}
+
+.menu-page-header p {
+    font-size: 1.2rem;
+    color: #aaaaaa;
+}
+
+.menu-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 5%;
+}
+
+.menu-category {
+    margin-bottom: 5rem;
+}
+
+.category-title {
+    font-size: 3rem;
+    color: var(--charcoal-black);
+    border-bottom: 2px solid var(--fire-red);
+    padding-bottom: 1rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.menu-image-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.menu-image-wrapper img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 /* Responsive */
