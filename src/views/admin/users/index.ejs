@@ -1,99 +1,125 @@
-<%- include('../partials/header') %>
-<%- include('../partials/sidebar') %>
+<%- include('/admin/partials/header') %>
+    <%- include('/admin/partials/sidebar') %>
 
-<div class="row mb-4">
-    <div class="col-md-6">
-        <form action="/admin/users" method="GET" class="d-flex gap-2">
-            <input type="text" name="search" class="form-control" placeholder="Tìm tên, SĐT, Email..." value="<%= search %>">
-            <select name="role" class="form-select" style="max-width: 150px;">
-                <option value="">Tất cả quyền</option>
-                <option value="customer" <%= role === 'customer' ? 'selected' : '' %>>Khách hàng</option>
-                <option value="staff" <%= role === 'staff' ? 'selected' : '' %>>Nhân viên</option>
-                <option value="admin" <%= role === 'admin' ? 'selected' : '' %>>Admin</option>
-            </select>
-            <button type="submit" class="btn btn-primary">Lọc</button>
-            <% if (search || role) { %>
-                <a href="/admin/users" class="btn btn-outline-secondary">Xóa lọc</a>
-            <% } %>
-        </form>
-    </div>
-    <div class="col-md-6 text-end">
-        <a href="/admin/users/create" class="btn btn-success"><i class="fa-solid fa-plus me-1"></i> Thêm tài khoản mới</a>
-    </div>
-</div>
-
-<% if (error) { %>
-    <div class="alert alert-danger"><%= error %></div>
-<% } %>
-<% if (success) { %>
-    <div class="alert alert-success"><%= success %></div>
-<% } %>
-
-<div class="card shadow mb-4">
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover align-middle">
-                <thead class="table-light">
-                    <tr>
-                        <th>Tên</th>
-                        <th>Email</th>
-                        <th>Số điện thoại</th>
-                        <th>Quyền</th>
-                        <th>Trạng thái</th>
-                        <th class="text-center">Hành động</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% if (users.length > 0) { %>
-                        <% users.forEach(user => { %>
-                            <tr>
-                                <td><%= user.name %></td>
-                                <td><%= user.email %></td>
-                                <td><%= user.phone %></td>
-                                <td>
-                                    <% if (user.role === 'admin') { %>
-                                        <span class="badge bg-danger">Admin</span>
-                                    <% } else if (user.role === 'staff') { %>
-                                        <span class="badge bg-warning text-dark">Nhân viên</span>
-                                    <% } else { %>
-                                        <span class="badge bg-secondary">Khách hàng</span>
-                                    <% } %>
-                                </td>
-                                <td>
-                                    <% if (user.isActive !== false) { %>
-                                        <span class="badge bg-success">Hoạt động</span>
-                                    <% } else { %>
-                                        <span class="badge bg-danger">Bị khóa</span>
-                                    <% } %>
-                                </td>
-                                <td class="text-center">
-                                    <a href="/admin/users/<%= user._id %>/edit" class="btn btn-sm btn-outline-primary" title="Chỉnh sửa">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-                                    
-                                    <form action="/admin/users/<%= user._id %>/toggle-status" method="POST" class="d-inline">
-                                        <button type="submit" class="btn btn-sm <%= user.isActive !== false ? 'btn-outline-warning' : 'btn-outline-success' %>" title="<%= user.isActive !== false ? 'Khóa' : 'Mở khóa' %>" onclick="return confirm('Bạn có chắc muốn <%= user.isActive !== false ? 'khóa' : 'mở khóa' %> tài khoản này?');">
-                                            <i class="fa-solid <%= user.isActive !== false ? 'fa-lock' : 'fa-unlock' %>"></i>
-                                        </button>
-                                    </form>
-
-                                    <form action="/admin/users/<%= user._id %>/delete" method="POST" class="d-inline">
-                                        <button type="submit" class="btn btn-sm btn-outline-danger" title="Xóa vĩnh viễn" onclick="return confirm('CẢNH BÁO: Hành động này sẽ xóa vĩnh viễn tài khoản. Bạn có chắc chắn?');">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        <% }) %>
-                    <% } else { %>
-                        <tr>
-                            <td colspan="6" class="text-center">Không tìm thấy tài khoản nào.</td>
-                        </tr>
-                    <% } %>
-                </tbody>
-            </table>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <form action="/admin/users" method="GET" class="d-flex gap-2">
+                    <input type="text" name="search" class="form-control" placeholder="Tìm tên, SĐT, Email..."
+                        value="<%= search %>">
+                    <select name="role" class="form-select" style="max-width: 150px;">
+                        <option value="">Tất cả quyền</option>
+                        <option value="customer" <%=role==='customer' ? 'selected' : '' %>>Khách hàng</option>
+                        <option value="staff" <%=role==='staff' ? 'selected' : '' %>>Nhân viên</option>
+                        <option value="admin" <%=role==='admin' ? 'selected' : '' %>>Admin</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Lọc</button>
+                    <% if (search || role) { %>
+                        <a href="/admin/users" class="btn btn-outline-secondary">Xóa lọc</a>
+                        <% } %>
+                </form>
+            </div>
+            <div class="col-md-6 text-end">
+                <a href="/admin/users/create" class="btn btn-success"><i class="fa-solid fa-plus me-1"></i> Thêm tài
+                    khoản mới</a>
+            </div>
         </div>
-    </div>
-</div>
 
-<%- include('../partials/footer') %>
+        <% if (error) { %>
+            <div class="alert alert-danger">
+                <%= error %>
+            </div>
+            <% } %>
+                <% if (success) { %>
+                    <div class="alert alert-success">
+                        <%= success %>
+                    </div>
+                    <% } %>
+
+                        <div class="card shadow mb-4">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover align-middle">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Tên</th>
+                                                <th>Email</th>
+                                                <th>Số điện thoại</th>
+                                                <th>Quyền</th>
+                                                <th>Trạng thái</th>
+                                                <th class="text-center">Hành động</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% if (users.length> 0) { %>
+                                                <% users.forEach(user=> { %>
+                                                    <tr>
+                                                        <td>
+                                                            <%= user.name %>
+                                                        </td>
+                                                        <td>
+                                                            <%= user.email %>
+                                                        </td>
+                                                        <td>
+                                                            <%= user.phone %>
+                                                        </td>
+                                                        <td>
+                                                            <% if (user.role==='admin' ) { %>
+                                                                <span class="badge bg-danger">Admin</span>
+                                                                <% } else if (user.role==='staff' ) { %>
+                                                                    <span class="badge bg-warning text-dark">Nhân
+                                                                        viên</span>
+                                                                    <% } else { %>
+                                                                        <span class="badge bg-secondary">Khách
+                                                                            hàng</span>
+                                                                        <% } %>
+                                                        </td>
+                                                        <td>
+                                                            <% if (user.isActive !==false) { %>
+                                                                <span class="badge bg-success">Hoạt động</span>
+                                                                <% } else { %>
+                                                                    <span class="badge bg-danger">Bị khóa</span>
+                                                                    <% } %>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <a href="/admin/users/<%= user._id %>/edit"
+                                                                class="btn btn-sm btn-outline-primary"
+                                                                title="Chỉnh sửa">
+                                                                <i class="fa-solid fa-pen-to-square"></i>
+                                                            </a>
+
+                                                            <form action="/admin/users/<%= user._id %>/toggle-status"
+                                                                method="POST" class="d-inline">
+                                                                <button type="submit"
+                                                                    class="btn btn-sm <%= user.isActive !== false ? 'btn-outline-warning' : 'btn-outline-success' %>"
+                                                                    title="<%= user.isActive !== false ? 'Khóa' : 'Mở khóa' %>"
+                                                                    onclick="return confirm('Bạn có chắc muốn <%= user.isActive !== false ? 'khóa' : 'mở khóa' %> tài khoản này?');">
+                                                                    <i
+                                                                        class="fa-solid <%= user.isActive !== false ? 'fa-lock' : 'fa-unlock' %>"></i>
+                                                                </button>
+                                                            </form>
+
+                                                            <form action="/admin/users/<%= user._id %>/delete"
+                                                                method="POST" class="d-inline">
+                                                                <button type="submit"
+                                                                    class="btn btn-sm btn-outline-danger"
+                                                                    title="Xóa vĩnh viễn"
+                                                                    onclick="return confirm('CẢNH BÁO: Hành động này sẽ xóa vĩnh viễn tài khoản. Bạn có chắc chắn?');">
+                                                                    <i class="fa-solid fa-trash"></i>
+                                                                </button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                    <% }) %>
+                                                        <% } else { %>
+                                                            <tr>
+                                                                <td colspan="6" class="text-center">Không tìm thấy tài
+                                                                    khoản nào.</td>
+                                                            </tr>
+                                                            <% } %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <%- include('/admin/partials/footer') %>

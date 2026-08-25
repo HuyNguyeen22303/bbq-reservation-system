@@ -1,56 +1,67 @@
-<%- include('../partials/header') %>
-<%- include('../partials/sidebar') %>
+<%- include('/admin/partials/header') %>
+    <%- include('/admin/partials/sidebar') %>
 
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                <h6 class="m-0 font-weight-bold text-primary">Chỉnh Sửa Tài Khoản</h6>
-                <a href="/admin/users" class="btn btn-sm btn-secondary">Quay lại</a>
-            </div>
-            <div class="card-body">
-                <% if (error) { %>
-                    <div class="alert alert-danger"><%= error %></div>
-                <% } %>
-                
-                <form action="/admin/users/<%= user._id %>/edit" method="POST">
-                    <div class="mb-3">
-                        <label class="form-label">Email (Không thể thay đổi)</label>
-                        <input type="email" class="form-control" value="<%= user.email %>" disabled>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                        <h6 class="m-0 font-weight-bold text-primary">Chỉnh Sửa Tài Khoản</h6>
+                        <a href="/admin/users" class="btn btn-sm btn-secondary">Quay lại</a>
                     </div>
+                    <div class="card-body">
+                        <% if (error) { %>
+                            <div class="alert alert-danger">
+                                <%= error %>
+                            </div>
+                            <% } %>
 
-                    <div class="mb-3">
-                        <label class="form-label">Tên người dùng <span class="text-danger">*</span></label>
-                        <input type="text" name="name" class="form-control" required value="<%= user.name %>">
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label class="form-label">Số điện thoại <span class="text-danger">*</span></label>
-                        <input type="text" name="phone" class="form-control" required value="<%= user.phone %>">
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label class="form-label">Quyền hạn <span class="text-danger">*</span></label>
-                        <select name="role" class="form-select" required>
-                            <option value="customer" <%= user.role === 'customer' ? 'selected' : '' %>>Khách hàng</option>
-                            <option value="staff" <%= user.role === 'staff' ? 'selected' : '' %>>Nhân viên</option>
-                            <option value="admin" <%= user.role === 'admin' ? 'selected' : '' %>>Admin</option>
-                        </select>
-                    </div>
+                                <form action="/admin/users/<%= user._id %>/edit" method="POST">
+                                    <div class="mb-3">
+                                        <label class="form-label">Email (Không thể thay đổi)</label>
+                                        <input type="email" class="form-control" value="<%= user.email %>" disabled>
+                                    </div>
 
-                    <hr>
-                    <h6 class="font-weight-bold">Đổi / Cấp lại mật khẩu</h6>
-                    <div class="mb-3">
-                        <label class="form-label">Mật khẩu mới</label>
-                        <input type="password" name="password" class="form-control" placeholder="Để trống nếu không muốn đổi mật khẩu">
+                                    <div class="mb-3">
+                                        <label class="form-label">Tên người dùng <span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" name="name" class="form-control" required
+                                            value="<%= user.name %>">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Số điện thoại <span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" name="phone" class="form-control" required
+                                            value="<%= user.phone %>">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Quyền hạn <span class="text-danger">*</span></label>
+                                        <select name="role" class="form-select" required>
+                                            <option value="customer" <%=user.role==='customer' ? 'selected' : '' %>
+                                                >Khách hàng</option>
+                                            <option value="staff" <%=user.role==='staff' ? 'selected' : '' %>>Nhân viên
+                                            </option>
+                                            <option value="admin" <%=user.role==='admin' ? 'selected' : '' %>>Admin
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <hr>
+                                    <h6 class="font-weight-bold">Đổi / Cấp lại mật khẩu</h6>
+                                    <div class="mb-3">
+                                        <label class="form-label">Mật khẩu mới</label>
+                                        <input type="password" name="password" class="form-control"
+                                            placeholder="Để trống nếu không muốn đổi mật khẩu">
+                                    </div>
+
+                                    <hr>
+                                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-save me-1"></i>
+                                        Lưu thay đổi</button>
+                                </form>
                     </div>
-                    
-                    <hr>
-                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-save me-1"></i> Lưu thay đổi</button>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
-<%- include('../partials/footer') %>
+        <%- include('/admin/partials/footer') %>

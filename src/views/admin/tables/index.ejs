@@ -1,68 +1,76 @@
-<%- include('../partials/header') %>
-<%- include('../partials/sidebar') %>
+<%- include('/admin/partials/header') %>
+    <%- include('/admin/partials/sidebar') %>
 
-<div class="card shadow mb-4">
-    <div class="card-header py-3 d-flex justify-content-between align-items-center">
-        <h6 class="m-0 font-weight-bold text-primary">Danh sách Bàn</h6>
-        <a href="/admin/tables/create" class="btn btn-sm btn-success">
-            <i class="fa-solid fa-plus"></i> Thêm Bàn Mới
-        </a>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover">
-                <thead class="table-light">
-                    <tr>
-                        <th>Số Bàn</th>
-                        <th>Sức Chứa (Người)</th>
-                        <th>Khu Vực</th>
-                        <th>Trạng Thái</th>
-                        <th>Hành Động</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% if (tables && tables.length > 0) { %>
-                        <% tables.forEach(table => { %>
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                <h6 class="m-0 font-weight-bold text-primary">Danh sách Bàn</h6>
+                <a href="/admin/tables/create" class="btn btn-sm btn-success">
+                    <i class="fa-solid fa-plus"></i> Thêm Bàn Mới
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-light">
                             <tr>
-                                <td><strong><%= table.tableNumber %></strong></td>
-                                <td><%= table.capacity %></td>
-                                <td>
-                                    <% if (table.location === 'indoor') { %>
-                                        <span class="badge bg-secondary">Trong nhà</span>
-                                    <% } else if (table.location === 'outdoor') { %>
-                                        <span class="badge bg-info text-dark">Ngoài trời</span>
-                                    <% } else { %>
-                                        <span class="badge bg-warning text-dark">VIP</span>
-                                    <% } %>
-                                </td>
-                                <td>
-                                    <% if (table.isAvailable) { %>
-                                        <span class="badge bg-success">Đang Trống</span>
-                                    <% } else { %>
-                                        <span class="badge bg-danger">Đang Sử Dụng / Hỏng</span>
-                                    <% } %>
-                                </td>
-                                <td>
-                                    <a href="/admin/tables/edit/<%= table._id %>" class="btn btn-sm btn-primary">
-                                        <i class="fa-solid fa-pen-to-square"></i> Sửa
-                                    </a>
-                                    <form action="/admin/tables/delete/<%= table._id %>" method="POST" class="d-inline" onsubmit="return confirm('Bạn có chắc chắn muốn xoá bàn này không?');">
-                                        <button type="submit" class="btn btn-sm btn-danger">
-                                            <i class="fa-solid fa-trash"></i> Xoá
-                                        </button>
-                                    </form>
-                                </td>
+                                <th>Số Bàn</th>
+                                <th>Sức Chứa (Người)</th>
+                                <th>Khu Vực</th>
+                                <th>Trạng Thái</th>
+                                <th>Hành Động</th>
                             </tr>
-                        <% }) %>
-                    <% } else { %>
-                        <tr>
-                            <td colspan="5" class="text-center text-muted">Chưa có dữ liệu bàn nào.</td>
-                        </tr>
-                    <% } %>
-                </tbody>
-            </table>
+                        </thead>
+                        <tbody>
+                            <% if (tables && tables.length> 0) { %>
+                                <% tables.forEach(table=> { %>
+                                    <tr>
+                                        <td><strong>
+                                                <%= table.tableNumber %>
+                                            </strong></td>
+                                        <td>
+                                            <%= table.capacity %>
+                                        </td>
+                                        <td>
+                                            <% if (table.location==='indoor' ) { %>
+                                                <span class="badge bg-secondary">Trong nhà</span>
+                                                <% } else if (table.location==='outdoor' ) { %>
+                                                    <span class="badge bg-info text-dark">Ngoài trời</span>
+                                                    <% } else { %>
+                                                        <span class="badge bg-warning text-dark">VIP</span>
+                                                        <% } %>
+                                        </td>
+                                        <td>
+                                            <% if (table.isAvailable) { %>
+                                                <span class="badge bg-success">Đang Trống</span>
+                                                <% } else { %>
+                                                    <span class="badge bg-danger">Đang Sử Dụng / Hỏng</span>
+                                                    <% } %>
+                                        </td>
+                                        <td>
+                                            <a href="/admin/tables/edit/<%= table._id %>"
+                                                class="btn btn-sm btn-primary">
+                                                <i class="fa-solid fa-pen-to-square"></i> Sửa
+                                            </a>
+                                            <form action="/admin/tables/delete/<%= table._id %>" method="POST"
+                                                class="d-inline"
+                                                onsubmit="return confirm('Bạn có chắc chắn muốn xoá bàn này không?');">
+                                                <button type="submit" class="btn btn-sm btn-danger">
+                                                    <i class="fa-solid fa-trash"></i> Xoá
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                                        <% } else { %>
+                                            <tr>
+                                                <td colspan="5" class="text-center text-muted">Chưa có dữ liệu bàn nào.
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<%- include('../partials/footer') %>
+        <%- include('/admin/partials/footer') %>

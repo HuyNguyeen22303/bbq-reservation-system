@@ -1,45 +1,55 @@
-<%- include('../partials/header') %>
-<%- include('../partials/sidebar') %>
+<%- include('/admin/partials/header') %>
+    <%- include('/admin/partials/sidebar') %>
 
-<div class="card shadow mb-4" style="max-width: 600px; margin: 0 auto;">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Sửa Bàn: <%= table.tableNumber %></h6>
-    </div>
-    <div class="card-body">
-        <% if (typeof error !== 'undefined') { %>
-            <div class="alert alert-danger"><%= error %></div>
-        <% } %>
-        <form action="/admin/tables/edit/<%= table._id %>" method="POST">
-            <div class="mb-3">
-                <label for="tableNumber" class="form-label">Số Bàn</label>
-                <input type="text" class="form-control" id="tableNumber" name="tableNumber" value="<%= table.tableNumber %>" required>
+        <div class="card shadow mb-4" style="max-width: 600px; margin: 0 auto;">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Sửa Bàn: <%= table.tableNumber %>
+                </h6>
             </div>
-            
-            <div class="mb-3">
-                <label for="capacity" class="form-label">Sức Chứa (Số người)</label>
-                <input type="number" class="form-control" id="capacity" name="capacity" min="1" value="<%= table.capacity %>" required>
-            </div>
+            <div class="card-body">
+                <% if (typeof error !=='undefined' ) { %>
+                    <div class="alert alert-danger">
+                        <%= error %>
+                    </div>
+                    <% } %>
+                        <form action="/admin/tables/edit/<%= table._id %>" method="POST">
+                            <div class="mb-3">
+                                <label for="tableNumber" class="form-label">Số Bàn</label>
+                                <input type="text" class="form-control" id="tableNumber" name="tableNumber"
+                                    value="<%= table.tableNumber %>" required>
+                            </div>
 
-            <div class="mb-3">
-                <label for="location" class="form-label">Khu Vực</label>
-                <select class="form-select" id="location" name="location" required>
-                    <option value="indoor" <%= table.location === 'indoor' ? 'selected' : '' %>>Trong nhà</option>
-                    <option value="outdoor" <%= table.location === 'outdoor' ? 'selected' : '' %>>Ngoài trời</option>
-                    <option value="vip" <%= table.location === 'vip' ? 'selected' : '' %>>Phòng VIP</option>
-                </select>
-            </div>
+                            <div class="mb-3">
+                                <label for="capacity" class="form-label">Sức Chứa (Số người)</label>
+                                <input type="number" class="form-control" id="capacity" name="capacity" min="1"
+                                    value="<%= table.capacity %>" required>
+                            </div>
 
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="isAvailable" name="isAvailable" <%= table.isAvailable ? 'checked' : '' %>>
-                <label class="form-check-label" for="isAvailable">Bàn có sẵn (Có thể đặt)</label>
-            </div>
+                            <div class="mb-3">
+                                <label for="location" class="form-label">Khu Vực</label>
+                                <select class="form-select" id="location" name="location" required>
+                                    <option value="indoor" <%=table.location==='indoor' ? 'selected' : '' %>>Trong nhà
+                                    </option>
+                                    <option value="outdoor" <%=table.location==='outdoor' ? 'selected' : '' %>>Ngoài
+                                        trời</option>
+                                    <option value="vip" <%=table.location==='vip' ? 'selected' : '' %>>Phòng VIP
+                                    </option>
+                                </select>
+                            </div>
 
-            <div class="mt-4">
-                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-save"></i> Cập Nhật</button>
-                <a href="/admin/tables" class="btn btn-secondary">Hủy</a>
-            </div>
-        </form>
-    </div>
-</div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="isAvailable" name="isAvailable"
+                                    <%=table.isAvailable ? 'checked' : '' %>>
+                                <label class="form-check-label" for="isAvailable">Bàn có sẵn (Có thể đặt)</label>
+                            </div>
 
-<%- include('../partials/footer') %>
+                            <div class="mt-4">
+                                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-save"></i> Cập
+                                    Nhật</button>
+                                <a href="/admin/tables" class="btn btn-secondary">Hủy</a>
+                            </div>
+                        </form>
+            </div>
+        </div>
+
+        <%- include('/admin/partials/footer') %>

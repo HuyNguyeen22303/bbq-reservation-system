@@ -36,6 +36,8 @@ app.set('views', path.join(__dirname, 'views'));  // config views
 
 app.set('view engine', 'ejs') // config ejs
 
+app.set('view options', { root: path.join(__dirname, 'views') });
+
 app.use("/admin", authAdmin); // route auth (login, logout)
 app.use("/admin", requireAdminLogin, appAdmin); // route app admin (được bảo vệ)
 app.use("/", appClient); // route app client
