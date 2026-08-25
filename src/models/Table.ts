@@ -9,14 +9,17 @@ export interface ITable extends Document {
   updatedAt: Date;
 }
 
+
+
+
 const TableSchema: Schema = new Schema(
   {
     tableNumber: { type: String, required: true, unique: true },
     capacity: { type: Number, required: true },
-    location: { 
-      type: String, 
-      enum: ['indoor', 'outdoor', 'vip'], 
-      default: 'indoor' 
+    location: {
+      type: String,
+      enum: ['indoor', 'outdoor', 'vip'],
+      default: 'indoor'
     },
     isAvailable: { type: Boolean, default: true },
   },
